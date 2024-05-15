@@ -22,7 +22,7 @@
     </div>
     <div  id="setup-area">
         <div>
-             <label for="number-of-players">Number of players:</label>
+             <label for="number-of-players">Players:</label>
              <select id="number-of-players" name="number-of-players" class="dropdown">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -34,10 +34,10 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
-                </select>
-        </div>
-        <div>
-            <label for="number-of-races">Number of races:</label>
+                </select><br>
+        <!-- </div> -->
+        <!-- <div> -->
+            <label for="number-of-races">Races:</label>
             <select id="number-of-races" name="number-of-races" class="dropdown">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -53,7 +53,14 @@
         </div>
         <div>
             <label for="player-name">Player Name:</label>
-            <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14">
+            <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14"><br>
+            <label for="difficulty">Difficulty:</label>
+            <select id="number-of-races" name="number-of-races" class="dropdown">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+                <option value="random" selected>Random</option>
+            </select>
         </div>
         <div>
             <button type="submit" id="submit-button">Confirm</button>
