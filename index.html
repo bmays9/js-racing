@@ -5,20 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Title-->
     <title>JS Racing</title>
+    <!-- Favicon downloaded from -->
+    <!-- https://www.freefavicon.com/freefavicons/objects/iconinfo/racing-flag-152-172009.html -->
+
 </head>
 
 <body>
     <div id="title">
         <h1> JS Racing</h1>
     </div>
-
-    <div id="setup-area">
-        Set Up
+    <!-- Game configuration area-->
+    <div>
+        <a href="#instructions">How To Play</a>
     </div>
-
+    <div  id="setup-area">
+        <div>
+             <label for="number-of-players">Number of players:</label>
+             <select id="number-of-players" name="number-of-players" class="dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+        </div>
+        <div>
+            <label for="number-of-races">Number of races:</label>
+            <select id="number-of-races" name="number-of-races" class="dropdown">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div>
+            <label for="player-name">Player Name:</label>
+            <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14">
+        </div>
+        <div>
+            <button type="submit" id="submit-button">Confirm</button>
+        </div>
+    </div>        
+     
     <div id="game-space">
         Game
+    </div>
+
+    <div id="instructions">
+        Instructions
     </div>
 
     <script src="assets/js/script.js"></script>
