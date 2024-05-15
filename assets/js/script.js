@@ -17,5 +17,5 @@ function runGame() {
 
     // add Player 1 name to input text field
 
-    document.addEventListener("DOMContentLoaded", runGame());
+
 }
