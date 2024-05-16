@@ -1,6 +1,4 @@
-console.log("It's working")
-
-// Setup initial game data and configuration - 1 player, 10 races.
+// Setup initial game data and configuration -> 1 player, 10 races.
 let numberOfPlayers = 1;
 let numberOfRaces = 10;
 const playersInTotal = 10;  // Number of game players, including computer controlled.
@@ -11,10 +9,9 @@ let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"]
 let playerData = [];
 
-document.addEventListener("DOMContentLoaded", runGame); 
 
 /**
- * function called by DOMContentLoad. Initialises the game data and waits for user action.
+ * Initialises the game data and waits for user action.
  */
 function runGame() {
     console.log("func:runGame")
@@ -23,24 +20,12 @@ function runGame() {
     document.getElementById('player-name').value = playerNames[0];
 
     buildPlayerData();
-    console.log(playerData);
-
+    
     buildGameTable();
-    
 
-    //add event listeners to the 3 setup options
-    //firstly, the 2 dropdowns
-    let numPlayers = document.getElementById('number-of-players');
-    numPlayers.addEventListener("change", function () {
-        console.log("num of players changed");
-        numberOfPlayers = numPlayers.value;
-        console.log(numberOfPlayers);
-    });
-    console.log("Number of Players from within game function" + numberOfPlayers);
-
-    //document.getElementById('number-of-races').addEventListener("change", numRaces);
-    //document.getElementById('submit-button').addEventListener("click", submitChange);
+    setupEventListeners();
     
+ 
 }
 /**
  * Populating initial array of playerData objects. 
@@ -84,4 +69,44 @@ function buildGameTable() {
     }
     document.getElementById('game-table').innerHTML = tableHtml
 }
+
+/**
+ * Creating Event listeners for the 2 setup options, 
+ * Changing the number of players, and clicking the submit button 
+ */
+function setupEventListeners() {
+    let numPlayers = document.getElementById('number-of-players');
+    numPlayers.addEventListener("change", function () {
+        console.log("num of players changed");
+        numberOfPlayers = numPlayers.value;
+        console.log(numberOfPlayers);
+        playerNumberChange();
+    });
+    console.log("Number of Players from within game function" + numberOfPlayers);
+
+    //document.getElementById('number-of-races').addEventListener("change", numRaces);
+    let playerConfirm = document.getElementById('submit-button').addEventListener("click", confirmPlayer);
+}
+
+/**
+ * Changing the number of user players in the game resets the form back to player 1 details
+ * and asks for confirmation. Previous changes are retained and displayed for each player
+ * but confirmation required again. 
+ */
+function playerNumberChange() {
+    console.log("func: numberOfPlayers")
+}
+
+/**
+ * Confirming the details of the player details being requested.
+ * Driver Name, and Difficulty.
+ * Where confirmation is for the last user, number of races is also confirmed as the game setting 
+ * and game moves to next phase.
+ */
+function confirmPlayer() {
+    console.log("func: confirmPlayer")
+}
+
+runGame();
+
 
