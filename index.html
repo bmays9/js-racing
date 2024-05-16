@@ -63,11 +63,19 @@
             </select>
         </div>
         <div>
-            <button type="submit" id="submit-button">Confirm</button>
+            <button type="submit" id="submit-button">Enter Player</button>
         </div>
     </div>        
      
     <div id="game-space">
+        <div id="info-space">   <!-- displays information about the data table-->
+        <p>Game settings</p>
+        </div>
+        <div id="action-space"> <!-- contains information for the user about how to proceed -->
+        <p>Choose the number of players and races. Enter player name and difficulty level for that player, then click 'Enter Player'</p>
+        <button type="submit" id="next-button">Next Action</button>
+        </div>
+
         <table id="game-table">
             <!-- Javascript will populate the table-->
         </table>
