@@ -48,14 +48,14 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10">10</option>
+                <option value="10" selected>10</option>
             </select>
         </div>
         <div>
             <label for="player-name">Player Name:</label>
             <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14"><br>
             <label for="difficulty">Difficulty:</label>
-            <select id="number-of-races" name="number-of-races" class="dropdown">
+            <select id="difficulty" name="difficulty" class="dropdown">
                 <option value="easy">Easy</option>
                 <option value="normal">Normal</option>
                 <option value="hard">Hard</option>
@@ -68,7 +68,9 @@
     </div>        
      
     <div id="game-space">
-        Game
+        <table id="game-table">
+            <!-- Javascript will populate the table-->
+        </table>
     </div>
 
     <div id="instructions">

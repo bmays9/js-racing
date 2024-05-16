@@ -25,7 +25,7 @@ function runGame() {
     buildPlayerData();
     console.log(playerData);
 
-    //Populate Game-Area Table with player details
+    buildGameTable();
     
 
     //add event listeners to the 3 setup options
@@ -53,10 +53,35 @@ function buildPlayerData() {
             "car": cars[i],
             "boost": 0,
             "rating": 0,
-            "race-points": 0,
-            "season-points": 0,
+            "racePoints": 0,
+            "seasonPoints": 0,
         });
     };
     console.log(playerData);
 };
+
+/**
+ * Building the html for the table in the game-space div 
+ */
+function buildGameTable() {
+    console.log("func: buildGameTable")
+    let tableHtml = `<tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Car</th>
+                <th>Boost</th>
+                <th>Points</th>
+            </tr>`
+    for (i = 0; i < 10; i++) {
+        tableHtml += `
+        <tr>
+                <td>${i + 1}</td>
+                <td>${playerData[i].name}</td>
+                <td>${playerData[i].car}</td>
+                <td>${playerData[i].boost}</td>
+                <td>${playerData[i].racePoints}</td>
+        </tr>`;
+    }
+    document.getElementById('game-table').innerHTML = tableHtml
+}
 
