@@ -52,7 +52,8 @@
             </select>
         </div>
         <div>
-            <label for="player-name">Player Name:</label>
+            <p>Enter Player <span id="player-number-details">1</span>:</p>
+            <label for="player-name">Name:</label>
             <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14"><br>
             <label for="difficulty">Difficulty:</label>
             <select id="difficulty" name="difficulty" class="dropdown">
@@ -63,7 +64,7 @@
             </select>
         </div>
         <div>
-            <button type="submit" id="submit-button">Enter Player</button>
+            <button type="submit" id="submit-button">Let's Race!'</button>
         </div>
     </div>        
      
@@ -73,7 +74,7 @@
         </div>
         <div id="action-space"> <!-- contains information for the user about how to proceed -->
         <p>Choose the number of players and races. Enter player name and difficulty level for that player, then click 'Enter Player'</p>
-        <button type="submit" id="next-button">Next Action</button>
+        <button type="submit" id="next-button" disabled>Next Action</button>
         </div>
 
         <table id="game-table">

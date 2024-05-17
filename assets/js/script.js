@@ -40,6 +40,7 @@ function buildPlayerData() {
             "rating": 0,
             "racePoints": 0,
             "seasonPoints": 0,
+            "level": "random",      // By default every player starts at random difficulty level
         });
     };
     console.log(playerData);
@@ -78,7 +79,8 @@ function setupEventListeners() {
     let numPlayers = document.getElementById('number-of-players');
     numPlayers.addEventListener("change", function () {
         console.log("num of players changed");
-        numberOfPlayers = numPlayers.value;
+        numberOfPlayers = parseInt(numPlayers.value);
+        typeof(numberOfPlayers)
         console.log(numberOfPlayers);
         playerNumberChange();
     });
@@ -90,11 +92,18 @@ function setupEventListeners() {
 
 /**
  * Changing the number of user players in the game resets the form back to player 1 details
- * and asks for confirmation. Previous changes are retained and displayed for each player
- * but confirmation required again. 
+ * and asks for confirmation. Stored data is displayed for each player but confirmation required again. 
  */
 function playerNumberChange() {
-    console.log("func: numberOfPlayers")
+    console.log("func: playerNumberChange");
+    let numElement = document.getElementById("submit-button");
+    (numberOfPlayers === 1) ? numElement.textContent = "Let's Race!" : numElement.textContent = "Confirm Player";
+    console.log(playerData[0].name);
+    console.log(playerData[0].level);
+    document.getElementById("player-number-details").textContent = "1";  // sets the text back to Player 1
+    document.getElementById("player-name").value = playerData[0].name;  // sets the Name input to stored Player 1 name
+    document.getElementById("difficulty").value = playerData[0].level;  // sets the difficulty level to stored Player 1 difficulty
+    document.getElementById("player-name").focus();
 }
 
 /**
