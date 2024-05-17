@@ -83,10 +83,19 @@ function setupEventListeners() {
         console.log(numberOfPlayers);
         playerNumberChange();
     });
-    console.log("Number of Players from within game function" + numberOfPlayers);
+    console.log("Number of Players:" + numberOfPlayers);
 
-    //document.getElementById('number-of-races').addEventListener("change", numRaces);
-    let playerConfirm = document.getElementById('submit-button').addEventListener("click", confirmPlayer);
+    document.getElementById('submit-button').addEventListener("click", confirmPlayer);
+
+    document.getElementById('next-button').addEventListener("click", function () {
+        if (this.textContent === "Start Race!") {
+            startRace();
+        } else if (this.textContent === "View Standings") {
+            displayStandings();
+        } else if (this.textContent === "Next Race") {
+            //setupRace(number); need race number
+        }
+    });
 }
 
 /**
@@ -163,7 +172,16 @@ function setupRace(raceNum) {
     children[0].textContent = countries[raceNum-1];
     children[1].textContent = `Race ${raceNum} of ${numberOfRaces}`;
     children[2].textContent = "Starting Line up";
+    document.getElementById('next-action-text').textContent = "Start the race!";
+
     document.getElementById('next-button').disabled = false; // enable gameplay button
+    
+}
+
+function startRace() {
+    console.log("func: startRace");
+    //  Calculate the race result
+    
 }
 
 runGame();
