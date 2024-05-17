@@ -178,10 +178,28 @@ function setupRace(raceNum) {
     
 }
 
+/**
+ * Generates the race result
+ */
 function startRace() {
     console.log("func: startRace");
     //  Calculate the race result
-    
+    createRaceArray(); 
+}
+
+/**
+ * Creates race array for the random number picks. One position in the array is assigned for each rating point, 
+ * another for each boost point. Array is populated with the player name.
+ */
+function createRaceArray() {
+    console.log("Setting up the race array")
+    let raceArray = [];
+    for (i = 0; i < 10; i++) {      // loop players
+        for (let x = 0; x < (playerData[i].rating + playerData[i].boost); x++) {    //loop rating + boost
+            raceArray.push(playerData[i].name);
+        }
+    }
+        console.log(raceArray);
 }
 
 runGame();
