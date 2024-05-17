@@ -9,7 +9,6 @@ let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"]
 let playerData = [];
 
-
 /**
  * Initialises the game data and waits for user action.
  */
@@ -25,8 +24,8 @@ function runGame() {
 
     setupEventListeners();
     
- 
 }
+
 /**
  * Populating initial array of playerData objects. 
  */
@@ -116,6 +115,9 @@ function confirmPlayer() {
     playerData[thisPlayer].name = document.getElementById("player-name").value;  // updates the playerData value
     playerData[thisPlayer].level = document.getElementById("difficulty").value;  // updates the playerData value
 
+    // update race table
+    buildGameTable();
+
     // what to do next
     if (thisPlayer + 1 === numberOfPlayers) {
         //setupRace()
@@ -124,7 +126,7 @@ function confirmPlayer() {
         displayPlayerSetup(thisPlayer +1); // + 1 
         
     } else {
-        console.log("Error")
+        console.log("Error in confirmPlayer function")
     }
 
     document.getElementById("player-name").focus();
@@ -137,8 +139,10 @@ function displayPlayerSetup(num) {              // num = playerData array number
     document.getElementById("player-name").value = playerData[num].name;  // sets the Name input to stored Player name
     document.getElementById("difficulty").value = playerData[num].level;  // sets the difficulty level to stored Player difficulty
     document.getElementById("player-name").focus();
-    (numberOfPlayers === num + 1) ? document.getElementById("submit-button").textContent = "Let's Race!"
-        : console.log("Error!");
+
+    if (numberOfPlayers === num + 1) {      // if player is last to edit, then change button text. 
+        document.getElementById("submit-button").textContent = "Let's Race!";
+    }
 };
 
 runGame();
