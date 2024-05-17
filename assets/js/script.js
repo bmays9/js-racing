@@ -100,10 +100,7 @@ function playerNumberChange() {
     (numberOfPlayers === 1) ? numElement.textContent = "Let's Race!" : numElement.textContent = "Confirm Player";
     console.log(playerData[0].name);
     console.log(playerData[0].level);
-    document.getElementById("player-number-details").textContent = "1";  // sets the text back to Player 1
-    document.getElementById("player-name").value = playerData[0].name;  // sets the Name input to stored Player 1 name
-    document.getElementById("difficulty").value = playerData[0].level;  // sets the difficulty level to stored Player 1 difficulty
-    document.getElementById("player-name").focus();
+    displayPlayerSetup(0);
 }
 
 /**
@@ -114,7 +111,35 @@ function playerNumberChange() {
  */
 function confirmPlayer() {
     console.log("func: confirmPlayer")
+    let thisPlayer = parseInt(document.getElementById("player-number-details").textContent - 1); // minus 1 for array value
+    console.log("this player" + thisPlayer);
+    playerData[thisPlayer].name = document.getElementById("player-name").value;  // updates the playerData value
+    playerData[thisPlayer].level = document.getElementById("difficulty").value;  // updates the playerData value
+
+    // what to do next
+    if (thisPlayer + 1 === numberOfPlayers) {
+        //setupRace()
+    } else if (thisPlayer + 1 < numberOfPlayers) {
+        // display next player details for editing & confirming.
+        displayPlayerSetup(thisPlayer +1); // + 1 
+        
+    } else {
+        console.log("Error")
+    }
+
+    document.getElementById("player-name").focus();
 }
+
+function displayPlayerSetup(num) {              // num = playerData array number 
+    console.log("func: displayPlayerSetup");
+    console.log("num=" + num);
+    document.getElementById("player-number-details").textContent = num + 1;  // sets the text to Player number
+    document.getElementById("player-name").value = playerData[num].name;  // sets the Name input to stored Player name
+    document.getElementById("difficulty").value = playerData[num].level;  // sets the difficulty level to stored Player difficulty
+    document.getElementById("player-name").focus();
+    (numberOfPlayers === num + 1) ? document.getElementById("submit-button").textContent = "Let's Race!"
+        : console.log("Error!");
+};
 
 runGame();
 
