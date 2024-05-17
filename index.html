@@ -70,11 +70,13 @@
      
     <div id="game-space">
         <div id="info-space">   <!-- displays information about the data table-->
-        <p>Game settings</p>
+        <h2 id="race-country">-- Setup Game --</h2>
+        <h3 id="race-count"></h3>
+        <h4 id="table-info"></h4>
         </div>
         <div id="action-space"> <!-- contains information for the user about how to proceed -->
-        <p>Choose the number of players and races. Enter player name and difficulty level for that player, then click 'Enter Player'</p>
-        <button type="submit" id="next-button" disabled>Next Action</button>
+        <p id="next-action-text">Choose the number of players and races. Enter name and difficulty level for each player.</p>
+        <button type="submit" id="next-button" disabled>Start Race!</button>
         </div>
 
         <table id="game-table">
@@ -83,7 +85,7 @@
     </div>
 
     <div id="instructions">
-        Instructions
+        <p>Instructions</p>
     </div>
 
     <script src="assets/js/script.js"></script>
