@@ -103,10 +103,9 @@ function playerNumberChange() {
 }
 
 /**
- * Confirming the details of the player details being requested.
+ * Stores the details of the player into playerData array
  * Driver Name, and Difficulty.
- * Where confirmation is for the last user, number of races is also confirmed as the game setting 
- * and game moves to next phase.
+ * If last player to confirm, the number of races is stored and game moves on.
  */
 function confirmPlayer() {
     console.log("func: confirmPlayer")
@@ -118,9 +117,12 @@ function confirmPlayer() {
     // update race table
     buildGameTable();
 
-    // what to do next
+    // check player number compared to total players to either edit next player or start racing
     if (thisPlayer + 1 === numberOfPlayers) {
-        //setupRace()
+        numberOfRaces = parseInt(document.getElementById('number-of-races').value);
+        document.getElementById("setup-area").style.display = "none"; // hide setup area
+        setupRace(0);
+
     } else if (thisPlayer + 1 < numberOfPlayers) {
         // display next player details for editing & confirming.
         displayPlayerSetup(thisPlayer +1); // + 1 
@@ -132,6 +134,10 @@ function confirmPlayer() {
     document.getElementById("player-name").focus();
 }
 
+/**
+ * Displays the next player information in the set up area. Num is the array number of playerData.
+ * @param {any} num
+ */
 function displayPlayerSetup(num) {              // num = playerData array number 
     console.log("func: displayPlayerSetup");
     console.log("num=" + num);
@@ -144,6 +150,13 @@ function displayPlayerSetup(num) {              // num = playerData array number
         document.getElementById("submit-button").textContent = "Let's Race!";
     }
 };
+
+/**
+ * Display race details and starting positions of players.
+ */
+function setupRace() {
+
+}
 
 runGame();
 
