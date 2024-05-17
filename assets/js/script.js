@@ -121,7 +121,7 @@ function confirmPlayer() {
     if (thisPlayer + 1 === numberOfPlayers) {
         numberOfRaces = parseInt(document.getElementById('number-of-races').value);
         document.getElementById("setup-area").style.display = "none"; // hide setup area
-        setupRace(0);
+        setupRace(1);   
 
     } else if (thisPlayer + 1 < numberOfPlayers) {
         // display next player details for editing & confirming.
@@ -153,9 +153,17 @@ function displayPlayerSetup(num) {              // num = playerData array number
 
 /**
  * Display race details and starting positions of players.
+ * raceNum starts at 1
  */
-function setupRace() {
-
+function setupRace(raceNum) {
+    console.log("func: setupRace");
+    //Update info-space div
+    let detailsDiv = document.getElementById('info-space');
+    let children = detailsDiv.children;
+    children[0].textContent = countries[raceNum-1];
+    children[1].textContent = `Race ${raceNum} of ${numberOfRaces}`;
+    children[2].textContent = "Starting Line up";
+    document.getElementById('next-button').disabled = false; // enable gameplay button
 }
 
 runGame();
