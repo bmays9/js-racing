@@ -130,7 +130,7 @@ function confirmPlayer() {
     if (thisPlayer + 1 === numberOfPlayers) {
         numberOfRaces = parseInt(document.getElementById('number-of-races').value);
         document.getElementById("setup-area").style.display = "none"; // hide setup area
-        setupRace(1);   
+        assignRatings();
 
     } else if (thisPlayer + 1 < numberOfPlayers) {
         // display next player details for editing & confirming.
@@ -158,6 +158,41 @@ function displayPlayerSetup(num) {              // num = playerData array number
     if (numberOfPlayers === num + 1) {      // if player is last to edit, then change button text. 
         document.getElementById("submit-button").textContent = "Let's Race!";
     }
+};
+
+/**
+ * Assign ratings to playerData using difficulty level
+ * random 1-10; hard: 1/2/3; normal: 5/6; easy: 8/9/10
+ */
+function assignRatings() {
+    console.log("func: assignRatings");
+    let range = 0;      //number of values
+    let add = 0;       //number to add from 0 to get rating range
+
+    for (let i = 0; i < 10; i++) {
+        switch (playerData[i].level) {
+            case "random":
+                range = 10;
+                add = 1;
+                break
+            case "easy":
+                range = 3;
+                add = 8;
+                break;
+            case "normal":
+                range = 2;
+                add = 5;
+                break;
+            case "hard":
+                range = 3;
+                add = 1;
+                break;
+        }
+        playerData[i].rating = Math.floor(Math.random() * range) + add;
+    }
+    console.log(playerData);
+
+    setupRace(1);
 };
 
 /**
