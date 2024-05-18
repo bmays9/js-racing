@@ -221,7 +221,7 @@ function startRace() {
     let race = createRaceArray(); 
     let result = createFinishArray(race);
     assignRacePoints(result);
-    //sortPlayerArray("result");
+    sortPlayerArray("race-result");
 }
 
 /**
@@ -281,6 +281,23 @@ function assignRacePoints(resultArray) {
         thisPlayer.racePoints = points;
         thisPlayer.seasonPoints += points;
         console.log(thisPlayer);
+    }
+}
+
+/**
+ * Sort playerData array ready for displaying in html table
+ * Code for sorting array by property helped by:
+ * https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
+ * @param {any} reason
+ */
+function sortPlayerArray(reason) {
+    console.log("func: sortPlayerArray");
+    if (reason === "race-result") {
+        let sortedPlayers = playerData.sort((p1, p2) => (p1.racePoints < p2.racePoints) ? 1 : (p1.racePoints > p2.racePoints) ? -1 : 0);
+        console.log(sortedPlayers);
+        playerData = sortedPlayers;
+    } else {
+        console.log("Error!")
     }
 }
 
