@@ -10,7 +10,7 @@ let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
-const raceDelay = 800;
+const raceDelay = 200;
 
 /**
  * Initialises the game data and waits for user action.
@@ -117,9 +117,11 @@ function setupEventListeners() {
         } else if (this.textContent === "View Standings") {
             displayStandings();
         } else if (this.textContent === "Next Race") {
-            //let raceNext = countries.indexOf(document.getElementById('race-country'));
-            //console.log(raceNext);
-            //setupRace(raceNext + 1);
+            thisCountry = document.getElementById('race-country').textContent;
+            console.log("This country" + thisCountry);
+            let raceNext = countries.indexOf(thisCountry);
+            console.log(raceNext);
+            setupRace(raceNext + 2);
         }
     });
 }
@@ -234,9 +236,10 @@ function setupRace(raceNum) {
     children[1].textContent = `Race ${raceNum} of ${numberOfRaces}`;
     children[2].textContent = "Starting Line up";
     document.getElementById('next-action-text').textContent = "Start the race!";
+    let button = document.getElementById('next-button');
+    (raceNum === 1) ? button.disabled = false : button.textContent = "Start Race!"; // enable gameplay button
+    //(numberOfPlayers === 1) ? numElement.textContent = "Let's Race!" : numElement.textContent = "Confirm Player";
 
-    document.getElementById('next-button').disabled = false; // enable gameplay button
-    
 }
 
 /**
@@ -362,6 +365,7 @@ function buildResult() {
 
 /**
  * Displays the game table row by row, starting with 10th place.
+ * Also calls addBoostPoints function. Boost points added after the race and first displayed in season standings.
  */
 function displayResult() {
     console.log("func: displayResult")
