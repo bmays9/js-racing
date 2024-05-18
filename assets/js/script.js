@@ -9,7 +9,7 @@ let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"];
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let playerData = [];
-const raceDelay = 500;
+const raceDelay = 200;
 
 /**
  * Initialises the game data and waits for user action.
@@ -68,6 +68,24 @@ function buildGameTable(stage) {
                 <td>${playerData[i].name}</td>
                 <td>${playerData[i].car}</td>
                 <td>${playerData[i].level}</td>
+        </tr>`;
+        }
+    } else if (stage === "standings") {
+        tableHtml = `<tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Car</th>
+                <th>Boost</th>
+                <th>Season Points</th>
+                </tr>`;
+        for (i = 0; i < 10; i++) {
+            tableHtml += `
+        <tr>
+                <td>${i + 1}</td>
+                <td>${playerData[i].name}</td>
+                <td>${playerData[i].car}</td>
+                <td>${playerData[i].boost}</td>
+                <td>${playerData[i].seasonPoints}</td>
         </tr>`;
         }
     } else {
@@ -305,8 +323,11 @@ function sortPlayerArray(reason) {
         console.log(sortedPlayers);
         playerData = sortedPlayers;
         
-    } else {
-        console.log("Sort Player Array Error!");
+    } else if (reason === "view-standings") {
+        console.log("view-standings");
+        let sortedPlayers = playerData.sort((p1, p2) => (p1.seasonPoints < p2.seasonPoints) ? 1 : (p1.seasonPoints > p2.seasonPoints) ? -1 : 0);
+        console.log(sortedPlayers);
+        playerData = sortedPlayers;
     }
 }
 /**
@@ -345,6 +366,8 @@ function displayResult() {
     document.getElementById("next-action-text").textContent = "";
     
     let racePositions = document.getElementsByTagName('tr');
+    // code below adapted from Robinz_alumni post on Slack
+    // https://code-institute-room.slack.com/archives/C7EJUQT2N/p1592124446412900
     let row = 10
     function displayRow() {
         console.log(`Displaying row number ${row}`);
@@ -357,6 +380,20 @@ function displayResult() {
         }
     }
     const counterIntervalWinner = setInterval(displayRow, raceDelay);
+}
+
+/**
+ * Display the season standings
+ */
+function displayStandings() {
+    // first sort the playerData array by season Points.
+    sortPlayerArray("view-standings");
+    console.log(playerData);
+    //update info text
+    document.getElementById("table-info").textContent = "Overall Standings";
+    document.getElementById("next-action-text").textContent = "The season so far..";
+    buildGameTable("standings")
+    document.getElementById('next-button').textContent = "Next Race";
 
 }
 
