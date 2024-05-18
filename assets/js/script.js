@@ -225,11 +225,12 @@ function startRace() {
     console.log("func: startRace");
     let race = createRaceArray(); 
     let result = createFinishArray(race);
+    document.getElementById('next-button').disabled = true; //disable button while race is happening.
     assignRacePoints(result);
     sortPlayerArray("race-result");
     buildResult();
     displayResult();
-}
+ }
 
 /**
  * Creates race array for the random number picks. One position in the array is assigned for each rating point, 
@@ -340,19 +341,23 @@ function buildResult() {
  */
 function displayResult() {
     console.log("func: displayResult")
+    document.getElementById("table-info").textContent = "Race Result";
+    document.getElementById("next-action-text").textContent = "";
+    
     let racePositions = document.getElementsByTagName('tr');
     let row = 10
-
     function displayRow() {
         console.log(`Displaying row number ${row}`);
         racePositions[row].style.visibility = "visible";
         row--;
-        if (row < 1) {
+        if (row < 1) { // Full result is now displayed, 
             clearInterval(counterIntervalWinner);
+            document.getElementById('next-button').disabled = false;
+            document.getElementById('next-button').textContent = "View Standings";
         }
     }
-
     const counterIntervalWinner = setInterval(displayRow, raceDelay);
+
 }
 
 runGame();
