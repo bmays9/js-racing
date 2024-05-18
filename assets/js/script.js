@@ -219,7 +219,9 @@ function setupRace(raceNum) {
 function startRace() {
     console.log("func: startRace");
     //  Calculate the race result
-    createRaceArray(); 
+    let race = createRaceArray(); 
+    let result = createFinishArray(race);
+
 }
 
 /**
@@ -234,7 +236,34 @@ function createRaceArray() {
             raceArray.push(playerData[i].name);
         }
     }
-        console.log(raceArray);
+    console.log(raceArray);
+    return raceArray;
+}
+
+/**
+ * From array of player names, pick random numbers to determine finishing places - first to last. 
+ * Once picked, that players name is removed from the array before the next finisher is selected. 
+ * finshArray is populated with players names in order they finished. [0] is the winner
+ * @param {any} raceRunning
+ */
+function createFinishArray(raceRunning) {
+    console.log("func: createFinishArray");
+    let finishArray = [];
+    let finisher =""
+    for (i = 0; i < 10; i++) {
+        finisher = Math.floor(Math.random() * raceRunning.length);
+        finishArray.push(raceRunning[finisher]);
+        // remove name from tickets array
+        let tempArray = raceRunning.filter(function (item) {
+            return item !== raceRunning[finisher];
+        });
+        //update raceRunning array with new filtered array
+        raceRunning = tempArray;
+        console.log(finishArray);
+        console.log(raceRunning);
+    }
+    
+    return finishArray;
 }
 
 runGame();
