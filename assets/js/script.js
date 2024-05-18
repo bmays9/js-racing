@@ -9,6 +9,7 @@ let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"];
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let playerData = [];
+const raceDelay = 500;
 
 /**
  * Initialises the game data and waits for user action.
@@ -322,7 +323,7 @@ function buildResult() {
         </tr>`;
     for (i = 0; i < 10; i++) {
         resultHtml += `
-        <tr>
+        <tr style="visibility:hidden;">
                 <td>${i + 1}</td>
                 <td>${playerData[i].name}</td>
                 <td>${playerData[i].car}</td>
@@ -331,7 +332,6 @@ function buildResult() {
         </tr>`;
     } 
 
-    document.getElementById('game-table').style.display = "none";
     document.getElementById('game-table').innerHTML = resultHtml;
 }
 
@@ -340,7 +340,19 @@ function buildResult() {
  */
 function displayResult() {
     console.log("func: displayResult")
+    let racePositions = document.getElementsByTagName('tr');
+    let row = 10
 
+    function displayRow() {
+        console.log(`Displaying row number ${row}`);
+        racePositions[row].style.visibility = "visible";
+        row--;
+        if (row < 1) {
+            clearInterval(counterIntervalWinner);
+        }
+    }
+
+    const counterIntervalWinner = setInterval(displayRow, raceDelay);
 }
 
 runGame();
