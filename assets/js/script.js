@@ -21,7 +21,7 @@ function runGame() {
 
     buildPlayerData();
     
-    buildGameTable();
+    buildGameTable("start");
 
     setupEventListeners();
     
@@ -48,25 +48,29 @@ function buildPlayerData() {
 
 /**
  * Building the html for the table in the game-space div 
+ * start, standings
  */
-function buildGameTable() {
+function buildGameTable(stage) {
     console.log("func: buildGameTable");
-    let tableHtml = `<tr>
-                <th>Position</th>
+    let tableHtml = "";
+    if (stage === "start") {
+        tableHtml = `<tr>
+                <th>Player #</th>
                 <th>Driver</th>
                 <th>Car</th>
                 <th>Difficulty</th>
-                <th>Points</th>
-            </tr>`;
-    for (i = 0; i < 10; i++) {
-        tableHtml += `
+                </tr>`;
+        for (i = 0; i < 10; i++) {
+            tableHtml += `
         <tr>
                 <td>${i + 1}</td>
                 <td>${playerData[i].name}</td>
                 <td>${playerData[i].car}</td>
-                <td>${playerData[i].boost}</td>
-                <td>${playerData[i].racePoints}</td>
+                <td>${playerData[i].level}</td>
         </tr>`;
+        }
+    } else {
+        console.log("error");
     }
     document.getElementById('game-table').innerHTML = tableHtml;
 }
@@ -124,7 +128,7 @@ function confirmPlayer() {
     playerData[thisPlayer].level = document.getElementById("difficulty").value;  // updates the playerData value
 
     // update race table
-    buildGameTable();
+    buildGameTable("start");
 
     // check player number compared to total players to either edit next player or start racing
     if (thisPlayer + 1 === numberOfPlayers) {
@@ -296,9 +300,16 @@ function sortPlayerArray(reason) {
         let sortedPlayers = playerData.sort((p1, p2) => (p1.racePoints < p2.racePoints) ? 1 : (p1.racePoints > p2.racePoints) ? -1 : 0);
         console.log(sortedPlayers);
         playerData = sortedPlayers;
+        buildResult();
     } else {
-        console.log("Error!")
+        console.log("Sort Player Array Error!");
     }
+}
+/**
+ * build HTML table for result, table will be hidden.
+ */
+function buildResult() {
+    console.log("func: buildResult")
 }
 
 runGame();
