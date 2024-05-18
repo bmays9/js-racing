@@ -8,8 +8,9 @@ let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
     "Jaguar", "Ford", "Toyota", "Honda", "Porsche"];
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"];
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
+let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
-const raceDelay = 200;
+const raceDelay = 800;
 
 /**
  * Initialises the game data and waits for user action.
@@ -116,7 +117,9 @@ function setupEventListeners() {
         } else if (this.textContent === "View Standings") {
             displayStandings();
         } else if (this.textContent === "Next Race") {
-            //setupRace(number); need race number
+            //let raceNext = countries.indexOf(document.getElementById('race-country'));
+            //console.log(raceNext);
+            //setupRace(raceNext + 1);
         }
     });
 }
@@ -301,7 +304,7 @@ function createFinishArray(raceRunning) {
 function assignRacePoints(resultArray) {
     console.log("func: assignRacePoints");
     for (i = 0; i < 10; i++) {
-        let points = pointsAwarded[i]
+        let points = pointsAwarded[i];
         let thisPlayer = playerData.find(thisPlayer => thisPlayer.name === resultArray[i]);
         console.log(thisPlayer);
         thisPlayer.racePoints = points;
@@ -375,6 +378,7 @@ function displayResult() {
         row--;
         if (row < 1) { // Full result is now displayed, 
             clearInterval(counterIntervalWinner);
+            addBoostPoints(); // add boost points after result has been displayed.
             document.getElementById('next-button').disabled = false;
             document.getElementById('next-button').textContent = "View Standings";
         }
@@ -394,7 +398,12 @@ function displayStandings() {
     document.getElementById("next-action-text").textContent = "The season so far..";
     buildGameTable("standings")
     document.getElementById('next-button').textContent = "Next Race";
+}
 
+function addBoostPoints() {
+    for (i = 0; i < playerData.length; i++) {
+        playerData[i].boost += boostAwarded[i];
+    }
 }
 
 runGame();
