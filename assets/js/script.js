@@ -186,7 +186,7 @@ function displayPlayerSetup(num) {              // num = playerData array number
     if (numberOfPlayers === num + 1) {      // if player is last to edit, then change button text. 
         document.getElementById("submit-button").textContent = "Let's Race!";
     }
-};
+}
 
 /**
  * Assign ratings to playerData using difficulty level
@@ -238,8 +238,6 @@ function setupRace(raceNum) {
     document.getElementById('next-action-text').textContent = "Start the race!";
     let button = document.getElementById('next-button');
     (raceNum === 1) ? button.disabled = false : button.textContent = "Start Race!"; // enable gameplay button
-    //(numberOfPlayers === 1) ? numElement.textContent = "Let's Race!" : numElement.textContent = "Confirm Player";
-
 }
 
 /**
@@ -261,7 +259,7 @@ function startRace() {
  * another for each boost point. Array is populated with the player name.
  */
 function createRaceArray() {
-    console.log("Setting up the race array")
+    console.log("Setting up the race array");
     let raceArray = [];
     for (i = 0; i < 10; i++) {      // loop players
         for (let x = 0; x < (playerData[i].rating + playerData[i].boost); x++) {    //loop rating + boost
@@ -368,14 +366,14 @@ function buildResult() {
  * Also calls addBoostPoints function. Boost points added after the race and first displayed in season standings.
  */
 function displayResult() {
-    console.log("func: displayResult")
+    console.log("func: displayResult");
     document.getElementById("table-info").textContent = "Race Result";
     document.getElementById("next-action-text").textContent = "";
     
     let racePositions = document.getElementsByTagName('tr');
     // code below adapted from Robinz_alumni post on Slack
     // https://code-institute-room.slack.com/archives/C7EJUQT2N/p1592124446412900
-    let row = 10
+    let row = 10;
     function displayRow() {
         console.log(`Displaying row number ${row}`);
         racePositions[row].style.visibility = "visible";
@@ -400,7 +398,7 @@ function displayStandings() {
     //update info text
     document.getElementById("table-info").textContent = "Overall Standings";
     document.getElementById("next-action-text").textContent = "The season so far..";
-    buildGameTable("standings")
+    buildGameTable("standings");
     document.getElementById('next-button').textContent = "Next Race";
 }
 
