@@ -226,6 +226,8 @@ function startRace() {
     let result = createFinishArray(race);
     assignRacePoints(result);
     sortPlayerArray("race-result");
+    buildResult();
+    displayResult();
 }
 
 /**
@@ -300,7 +302,7 @@ function sortPlayerArray(reason) {
         let sortedPlayers = playerData.sort((p1, p2) => (p1.racePoints < p2.racePoints) ? 1 : (p1.racePoints > p2.racePoints) ? -1 : 0);
         console.log(sortedPlayers);
         playerData = sortedPlayers;
-        buildResult();
+        
     } else {
         console.log("Sort Player Array Error!");
     }
@@ -309,7 +311,36 @@ function sortPlayerArray(reason) {
  * build HTML table for result, table will be hidden.
  */
 function buildResult() {
-    console.log("func: buildResult")
+    console.log("func: buildResult");
+    let resultHtml = "";
+    resultHtml = `<tr>
+        <th>Position</th>
+        <th>Driver</th>
+        <th>Car</th>
+        <th>Boost</th>
+        <th>Race Points</th>
+        </tr>`;
+    for (i = 0; i < 10; i++) {
+        resultHtml += `
+        <tr>
+                <td>${i + 1}</td>
+                <td>${playerData[i].name}</td>
+                <td>${playerData[i].car}</td>
+                <td>${playerData[i].boost}</td>
+                <td>${playerData[i].racePoints}</td>
+        </tr>`;
+    } 
+
+    document.getElementById('game-table').style.display = "none";
+    document.getElementById('game-table').innerHTML = resultHtml;
+}
+
+/**
+ * Displays the game table row by row, starting with 10th place.
+ */
+function displayResult() {
+    console.log("func: displayResult")
+
 }
 
 runGame();
