@@ -32,6 +32,7 @@ th {
 
 tr {
     line-height: 1.7rem;
+    font-weight: 600;
 }
 
 a {
@@ -87,4 +88,12 @@ button {
 
 #align-center {
     text-align: center;
+}
+
+/* Media Query: mobile phones and larger - 476px and upwards*/
+@media screen and (min-width: 476px) {
+
+    td, th {
+        padding-left: 20px;
+    }
 }
