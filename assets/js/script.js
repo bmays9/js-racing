@@ -10,7 +10,7 @@ let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
-const raceDelay = 400;
+let raceDelay = 800;
 let firstSeason = true;
 
 /**
@@ -394,7 +394,8 @@ function displayResult() {
     console.log("func: displayResult");
     document.getElementById("table-info").textContent = "Race Result";
     document.getElementById("next-action-text").textContent = "";
-    
+    raceDelay = document.getElementById("game-speed").value;
+
     let racePositions = document.getElementsByTagName('tr');
     // code below adapted from Robinz_alumni post on Slack
     // https://code-institute-room.slack.com/archives/C7EJUQT2N/p1592124446412900

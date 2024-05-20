@@ -88,14 +88,26 @@
             <p id="next-action-text" class="space-below">Choose the number of players and races. Enter name and difficulty level for each player.</p>
             <button id="next-button" disabled>Start Race!</button>
         </div>
-
+        <!-- Game table will display player details, race details, overall standings-->
         <table id="game-table" class="space-below">
             <!-- Javascript will populate the table-->
         </table>
     </div>
+    <!-- Game speed selector -->
+    <div class="space-below">
+        <p>
+            <label for="game-speed">Game Speed:</label>
+            <select id="game-speed" name="game-speed" class="dropdown width-90">
+                <option value="200">Quick</option>
+                <option value="800" selected>Normal</option>
+                <option value="1500">Slow</option>
+                <option value="2500">Slowest</option>
+            </select>
+        </p>
+    </div>
     <!-- Instruction section - contains rules for the game-->
     <div id="instructions">
-        <p>Instructions</p>
+        <h2>Instructions</h2>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
