@@ -1,8 +1,10 @@
+/* Wildcard selector, necessary to override browser defaults */
 * {
     padding: 0;
     margin: 0;
 }
 
+/* General Styles */
 body {
     font-family: "Sora", sans-serif;
     background: black;
@@ -17,12 +19,13 @@ div {
     text-align: center;
 }
 
+/* Main table in the game area section */
 table {
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     text-align: left;
-    font-family: "Courier New", sans-serif;
+    font-family: "Courier New", serif;
     border-spacing: 5px;
 }
 
@@ -40,6 +43,9 @@ a {
     font-size: 80%;
 }
 
+/* Classes */
+
+/* For input elements */
 .width-90 {
     width: 90px;
     background-color: white;
@@ -69,10 +75,16 @@ button {
     text-align: right;
  }
 
+
+/* ID styling */
 #title {
+    margin-bottom: 20px;
+}
+
+#title a {
     color: lawngreen;
     font-style: italic;
-    margin-bottom: 20px;
+    text-decoration: none;
 }
 
 #setup-area {

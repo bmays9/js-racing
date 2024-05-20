@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags for search engines -->
+    <meta name="description" content="JS Racing - A racing game for 1 to 10 players">
+    <meta name="keywords" content="racing, game, multi-player games, car racing, quick games, javascript games, free, online games">
+    <!-- Link to CSS stylesheet-->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,28 +19,31 @@
 </head>
 
 <body>
+    <!-- Header-->
     <div id="title">
-        <h1>JS Racing</h1>
+        <h1><a href="index.html">JS Racing</a></h1>
     </div>
     <!-- Game configuration area-->
     <div>
         <a href="#instructions">How To Play</a>
     </div>
-    <div  id="setup-area">
+
+    <!-- Number of Players and Number of Races options-->
+    <div id="setup-area">
         <div class="align-right">
-             <label for="number-of-players">Players:</label>
-             <select id="number-of-players" name="number-of-players" class="dropdown">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select><br>
+            <label for="number-of-players">Players:</label>
+            <select id="number-of-players" name="number-of-players" class="dropdown">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select><br>
             <label for="number-of-races">Races:</label>
             <select id="number-of-races" name="number-of-races" class="dropdown">
                 <option value="1">1</option>
@@ -51,6 +58,8 @@
                 <option value="10" selected>10</option>
             </select>
         </div>
+
+        <!-- Central area to enter player name and select difficulty level -->
         <div class="align-right">
             <p id="align-center">Enter Player <span id="player-number-details">1</span>:</p>
             <label for="player-name">Name:</label>
@@ -64,25 +73,27 @@
             </select>
         </div>
         <div>
-            <button type="submit" id="submit-button">Let's Play!</button>
+            <button id="submit-button">Let's Play!</button>
         </div>
-    </div>        
-     
+    </div>
+    <!-- Area for display information about the data table-->
     <div id="game-space">
-        <div id="info-space">   <!-- displays information about the data table-->
-        <h2 id="race-country" class="space-below space-above">-- Setup Game --</h2>
-        <h3 id="race-count" class="space-below"></h3>
-        <h4 id="table-info" class="space-below"></h4>
+        <div id="info-space">
+            <h2 id="race-country" class="space-below space-above">-- Setup Game --</h2>
+            <h3 id="race-count" class="space-below"></h3>
+            <h4 id="table-info" class="space-below"></h4>
         </div>
-        <div id="action-space" class="space-below"> <!-- contains information for the user about how to proceed -->
-        <p id="next-action-text" class="space-below">Choose the number of players and races. Enter name and difficulty level for each player.</p>
-        <button type="submit" id="next-button" disabled>Start Race!</button>
+        <div id="action-space" class="space-below">
+            <!-- contains information for the user about how to proceed -->
+            <p id="next-action-text" class="space-below">Choose the number of players and races. Enter name and difficulty level for each player.</p>
+            <button id="next-button" disabled>Start Race!</button>
         </div>
 
         <table id="game-table" class="space-below">
             <!-- Javascript will populate the table-->
         </table>
     </div>
+    <!-- Instruction section - contains rules for the game-->
     <div id="instructions">
         <p>Instructions</p>
     </div>
