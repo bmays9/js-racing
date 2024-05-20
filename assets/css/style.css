@@ -1,5 +1,16 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     font-family: "Sora", sans-serif;
+    background: black;
+    color: whitesmoke;
+}
+
+label {
+    line-height: 2rem;
 }
 
 div {
@@ -9,14 +20,56 @@ div {
 table {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: left;
     font-family: "Courier New", sans-serif;
-    
+    border-spacing: 5px;
 }
 
+th {
+    color: yellow;
+}
+
+tr {
+    line-height: 1.7rem;
+}
+
+a {
+    color: yellow;
+    font-size: 80%;
+}
+
+.width-90 {
+    width: 90px;
+    background-color: white;
+    color: black;
+    height: 1.2rem;
+}
+
+.space-below {
+    margin-bottom: 15px;
+}
+
+.space-above {
+    margin-top: 15px;
+}
+
+button {
+    width: 140px;
+    height: 2rem;
+    background-color: yellow;
+    font-size: 110%;
+    font-weight: 600;
+}
+
+.align-right {
+    text-align: right;
+ }
+
 #title {
-    background-color: lightblue;
+    color: lawngreen;
+    font-style: italic;
+    margin-bottom: 20px;
 }
 
 #setup-area {
@@ -24,4 +77,12 @@ table {
     justify-content: center;
     padding: 10px;
     gap: 20px;
+    border-bottom: 2px yellow solid;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    align-items: flex-end;
+}
+
+#align-center {
+    text-align: center;
 }

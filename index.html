@@ -12,19 +12,18 @@
     <title>JS Racing</title>
     <!-- Favicon downloaded from -->
     <!-- https://www.freefavicon.com/freefavicons/objects/iconinfo/racing-flag-152-172009.html -->
-
 </head>
 
 <body>
     <div id="title">
-        <h1> JS Racing</h1>
+        <h1>JS Racing</h1>
     </div>
     <!-- Game configuration area-->
     <div>
         <a href="#instructions">How To Play</a>
     </div>
     <div  id="setup-area">
-        <div>
+        <div class="align-right">
              <label for="number-of-players">Players:</label>
              <select id="number-of-players" name="number-of-players" class="dropdown">
                     <option value="1">1</option>
@@ -38,8 +37,6 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select><br>
-        <!-- </div> -->
-        <!-- <div> -->
             <label for="number-of-races">Races:</label>
             <select id="number-of-races" name="number-of-races" class="dropdown">
                 <option value="1">1</option>
@@ -54,12 +51,12 @@
                 <option value="10" selected>10</option>
             </select>
         </div>
-        <div>
-            <p>Enter Player <span id="player-number-details">1</span>:</p>
+        <div class="align-right">
+            <p id="align-center">Enter Player <span id="player-number-details">1</span>:</p>
             <label for="player-name">Name:</label>
-            <input name="player-name" id="player-name" type="text" class="input-text" required minlength="1" maxlength="14"><br>
+            <input name="player-name" id="player-name" type="text" class="width-90" required minlength="1" maxlength="14"><br>
             <label for="difficulty">Difficulty:</label>
-            <select id="difficulty" name="difficulty" class="dropdown">
+            <select id="difficulty" name="difficulty" class="dropdown width-90">
                 <option value="easy">Easy</option>
                 <option value="normal">Normal</option>
                 <option value="hard">Hard</option>
@@ -67,30 +64,28 @@
             </select>
         </div>
         <div>
-            <button type="submit" id="submit-button">Let's Race!'</button>
+            <button type="submit" id="submit-button">Let's Race!</button>
         </div>
     </div>        
      
     <div id="game-space">
         <div id="info-space">   <!-- displays information about the data table-->
-        <h2 id="race-country">-- Setup Game --</h2>
-        <h3 id="race-count"></h3>
-        <h4 id="table-info"></h4>
+        <h2 id="race-country" class="space-below space-above">-- Setup Game --</h2>
+        <h3 id="race-count" class="space-below"></h3>
+        <h4 id="table-info" class="space-below"></h4>
         </div>
-        <div id="action-space"> <!-- contains information for the user about how to proceed -->
-        <p id="next-action-text">Choose the number of players and races. Enter name and difficulty level for each player.</p>
+        <div id="action-space" class="space-below"> <!-- contains information for the user about how to proceed -->
+        <p id="next-action-text" class="space-below">Choose the number of players and races. Enter name and difficulty level for each player.</p>
         <button type="submit" id="next-button" disabled>Start Race!</button>
         </div>
 
-        <table id="game-table">
+        <table id="game-table" class="space-below">
             <!-- Javascript will populate the table-->
         </table>
     </div>
-
     <div id="instructions">
         <p>Instructions</p>
     </div>
-
     <script src="assets/js/script.js"></script>
 </body>
 </html>
