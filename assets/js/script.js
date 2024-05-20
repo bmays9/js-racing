@@ -48,7 +48,7 @@ function buildPlayerData() {
             "rating": 0,
             "racePoints": 0,
             "seasonPoints": 0,
-            "level": "random",      // By default every player starts at random difficulty level
+            "level": "Random",      // By default every player starts at random difficulty level
         });
     }
     console.log(playerData);
@@ -224,19 +224,19 @@ function assignRatings() {
 
     for (let i = 0; i < 10; i++) {
         switch (playerData[i].level) {
-            case "random":
+            case "Random":
                 range = 10;
                 add = 1;
                 break;
-            case "easy":
+            case "Easy":
                 range = 3;
                 add = 8;
                 break;
-            case "normal":
+            case "Normal":
                 range = 2;
                 add = 5;
                 break;
-            case "hard":
+            case "Hard":
                 range = 3;
                 add = 1;
                 break;
