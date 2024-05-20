@@ -11,7 +11,7 @@ let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
 const raceDelay = 200;
-let seasonNumber = 0;
+let firstSeason = true;
 
 /**
  * Initialises the game data and waits for user action.
@@ -26,10 +26,11 @@ function runGame() {
     
     buildGameTable("start");
     
-    if (seasonNumber === 0) {      // check if first season to setup Event Listeners.
+    if (firstSeason === true) {      // check if first season to setup Event Listeners.
         setupEventListeners();
+        firstSeason = false;
     } else {
-        seasonNumber++
+        console.log("Event Listeners already set up");
     }
     }
 
