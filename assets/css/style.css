@@ -60,6 +60,8 @@ button {
     background-color: yellow;
     font-size: 110%;
     font-weight: 600;
+    color: black;
+    border: 1px solid grey;
 }
 
 .align-right {
