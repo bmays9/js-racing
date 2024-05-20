@@ -10,7 +10,7 @@ let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
-const raceDelay = 200;
+const raceDelay = 400;
 let firstSeason = true;
 
 /**
@@ -20,7 +20,7 @@ function runGame() {
     console.log("func:runGame");
 
     // Setup initial game data and configuration - Player 1 name:
-    document.getElementById('player-name').value = playerNames[0];
+    document.getElementById('player-name').value = playerNames[numberOfPlayers-1];
 
     buildPlayerData();
     
@@ -68,7 +68,7 @@ function buildGameTable(stage) {
                 <th>Car</th>
                 <th>Difficulty</th>
                 </tr>`;
-        for (i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
             tableHtml += `
         <tr>
                 <td>${i + 1}</td>
@@ -85,7 +85,7 @@ function buildGameTable(stage) {
                 <th>Boost</th>
                 <th>Points</th>
                 </tr>`;
-        for (i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
             tableHtml += `
         <tr>
                 <td>${i + 1}</td>
@@ -148,7 +148,7 @@ function setupEventListeners() {
 function playerNumberChange() {
     console.log("func: playerNumberChange");
     let numElement = document.getElementById("submit-button");
-    (numberOfPlayers === 1) ? numElement.textContent = "Let's Race!" : numElement.textContent = "Confirm Player";
+    (numberOfPlayers === 1) ? numElement.textContent = "Let's Play!" : numElement.textContent = "Confirm Player";
     console.log(playerData[0].name);
     console.log(playerData[0].level);
     displayPlayerSetup(0);
@@ -162,7 +162,17 @@ function playerNumberChange() {
 function confirmPlayer() {
     console.log("func: confirmPlayer");
     let thisPlayer = parseInt(document.getElementById("player-number-details").textContent - 1); // minus 1 for array value
+    let enteredName = document.getElementById("player-name").value; 
     console.log("this player" + thisPlayer);
+
+    // check if entered name is a duplicate
+    for (let i = 0; i < playerData.length; i++) {
+        if ((enteredName === playerData[i].name) && (thisPlayer !== i)) {
+            alert("Player name is already taken");
+            return
+        }
+    }
+
     playerData[thisPlayer].name = document.getElementById("player-name").value;  // updates the playerData value
     playerData[thisPlayer].level = document.getElementById("difficulty").value;  // updates the playerData value
 
@@ -199,7 +209,7 @@ function displayPlayerSetup(num) {              // num = playerData array number
     document.getElementById("player-name").focus();
 
     if (numberOfPlayers === num + 1) {      // if player is last to edit, then change button text. 
-        document.getElementById("submit-button").textContent = "Let's Race!";
+        document.getElementById("submit-button").textContent = "Let's Play!";
     }
 }
 
@@ -276,7 +286,7 @@ function startRace() {
 function createRaceArray() {
     console.log("Setting up the race array");
     let raceArray = [];
-    for (i = 0; i < 10; i++) {      // loop players
+    for (let i = 0; i < 10; i++) {      // loop players
         for (let x = 0; x < (playerData[i].rating + playerData[i].boost); x++) {    //loop rating + boost
             raceArray.push(playerData[i].name);
         }
@@ -295,7 +305,7 @@ function createFinishArray(raceRunning) {
     console.log("func: createFinishArray");
     let finishArray = [];
     let finisher = "";
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         finisher = Math.floor(Math.random() * raceRunning.length);
         finishArray.push(raceRunning[finisher]);
         // remove name from tickets array
@@ -319,7 +329,7 @@ function createFinishArray(raceRunning) {
  */
 function assignRacePoints(resultArray) {
     console.log("func: assignRacePoints");
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         let points = pointsAwarded[i];
         let thisPlayer = playerData.find(thisPlayer => thisPlayer.name === resultArray[i]);
         console.log(thisPlayer);
@@ -362,7 +372,7 @@ function buildResult() {
         <th>Boost</th>
         <th>Points</th>
         </tr>`;
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         resultHtml += `
         <tr style="visibility:hidden;">
                 <td>${i + 1}</td>
@@ -423,7 +433,7 @@ function displayStandings() {
 }
 
 function addBoostPoints() {
-    for (i = 0; i < playerData.length; i++) {
+    for (let i = 0; i < playerData.length; i++) {
         playerData[i].boost += boostAwarded[i];
     }
 }
