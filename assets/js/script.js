@@ -11,6 +11,7 @@ let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
 let playerData = [];
 const raceDelay = 200;
+let seasonNumber = 0;
 
 /**
  * Initialises the game data and waits for user action.
@@ -24,16 +25,20 @@ function runGame() {
     buildPlayerData();
     
     buildGameTable("start");
-
-    setupEventListeners();
     
-}
+    if (seasonNumber === 0) {      // check if first season to setup Event Listeners.
+        setupEventListeners();
+    } else {
+        seasonNumber++
+    }
+    }
 
 /**
  * Populating initial array of playerData objects. 
  */
 function buildPlayerData() {
     console.log("func: buildPlayerData");
+    playerData = [];
     for (let i = 0; i < playersInTotal; i++) {
         playerData.push({
             "name": playerNames[i],
@@ -73,11 +78,11 @@ function buildGameTable(stage) {
         }
     } else if (stage === "standings") {
         tableHtml = `<tr>
-                <th>Position</th>
+                <th>Pos</th>
                 <th>Driver</th>
                 <th>Car</th>
                 <th>Boost</th>
-                <th>Season Points</th>
+                <th>Points</th>
                 </tr>`;
         for (i = 0; i < 10; i++) {
             tableHtml += `
@@ -117,11 +122,20 @@ function setupEventListeners() {
         } else if (this.textContent === "View Standings") {
             displayStandings();
         } else if (this.textContent === "Next Race") {
-            thisCountry = document.getElementById('race-country').textContent;
+            let thisCountry = document.getElementById('race-country').textContent;
             console.log("This country" + thisCountry);
             let raceNext = countries.indexOf(thisCountry);
             console.log(raceNext);
             setupRace(raceNext + 2);
+        } else if (this.textContent === "Play Again") {
+            //reset and prepare new game
+            document.getElementById("setup-area").style.display = "flex";
+            document.getElementById('race-country').textContent = "--Setup Game--";
+            document.getElementById('next-button').disabled = true;
+            document.getElementById('next-button').textContent = "Start Race!";
+            runGame();
+        } else {
+            console.log("Error in next-button event handler");
         }
     });
 }
@@ -234,8 +248,8 @@ function setupRace(raceNum) {
     let children = detailsDiv.children;
     children[0].textContent = countries[raceNum-1];
     children[1].textContent = `Race ${raceNum} of ${numberOfRaces}`;
-    children[2].textContent = "Starting Line up";
-    document.getElementById('next-action-text').textContent = "Start the race!";
+    children[2].textContent = "Starting Line Up";
+    document.getElementById('next-action-text').textContent = "Drivers are ready...";
     let button = document.getElementById('next-button');
     (raceNum === 1) ? button.disabled = false : button.textContent = "Start Race!"; // enable gameplay button
 }
@@ -341,11 +355,11 @@ function buildResult() {
     console.log("func: buildResult");
     let resultHtml = "";
     resultHtml = `<tr>
-        <th>Position</th>
+        <th>Pos.</th>
         <th>Driver</th>
         <th>Car</th>
         <th>Boost</th>
-        <th>Race Points</th>
+        <th>Points</th>
         </tr>`;
     for (i = 0; i < 10; i++) {
         resultHtml += `
@@ -399,13 +413,25 @@ function displayStandings() {
     document.getElementById("table-info").textContent = "Overall Standings";
     document.getElementById("next-action-text").textContent = "The season so far..";
     buildGameTable("standings");
-    document.getElementById('next-button').textContent = "Next Race";
+    //check end of game
+    if (document.getElementById('race-country').textContent === countries[numberOfRaces-1]) {
+        endOfGame();
+    } else {
+        document.getElementById('next-button').textContent = "Next Race";
+    }
 }
 
 function addBoostPoints() {
     for (i = 0; i < playerData.length; i++) {
         playerData[i].boost += boostAwarded[i];
     }
+}
+
+function endOfGame() {
+    console.log("func: endOfGame");
+    document.getElementById("table-info").textContent = "Final Standings";
+    document.getElementById("next-action-text").textContent = `${playerData[0].name} is the winner with ${playerData[0].seasonPoints} points!`;
+    document.getElementById('next-button').textContent = "Play Again";
 }
 
 runGame();
