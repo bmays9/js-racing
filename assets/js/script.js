@@ -118,39 +118,40 @@ function setupEventListeners() {
     document.getElementById('submit-button').addEventListener("click", confirmPlayer);
 
     document.getElementById('next-button').addEventListener("click", function () {
-        if (this.textContent === "Start Race!") {
-            startRace();
-        } else if (this.textContent === "View Standings") {
-            displayStandings();
-        } else if (this.textContent === "Next Race") {
-            let thisCountry = document.getElementById('race-country').textContent;
-            console.log("This country" + thisCountry);
-            let raceNext = countries.indexOf(thisCountry);
-            console.log(raceNext);
-            setupRace(raceNext + 2);
-        } else if (this.textContent === "Play Again") {
-            //reset and prepare new game
-            document.getElementById("setup-area").style.display = "flex";
-            document.getElementById('race-country').textContent = "--Setup Game--";
-            document.getElementById('next-button').disabled = true;
-            document.getElementById('next-button').textContent = "Start Race!";
-            runGame();
-        } else {
-            console.log("Error in next-button event handler");
+
+        switch (this.textContent) {
+            case "Start Race!":
+                startRace();
+                break;
+            case "View Standings":
+                displayStandings();
+                break;
+            case "Next Race":
+                let thisCountry = document.getElementById('race-country').textContent;
+                let raceNext = countries.indexOf(thisCountry);
+                setupRace(raceNext + 2);
+                break;
+            case "Play Again":
+                //reset and prepare new game
+                document.getElementById("setup-area").style.display = "flex";
+                document.getElementById('race-country').textContent = "--Setup Game--";
+                document.getElementById('next-button').disabled = true;
+                document.getElementById('next-button').textContent = "Start Race!";
+                runGame();
         }
     });
 }
-
 /**
  * Changing the number of user players in the game resets the form back to player 1 details
  * and asks for confirmation. Stored data is displayed for each player but confirmation required again. 
  */
 function playerNumberChange() {
-    console.log("func: playerNumberChange");
     let numElement = document.getElementById("submit-button");
-    (numberOfPlayers === 1) ? numElement.textContent = "Let's Play!" : numElement.textContent = "Confirm Player";
-    console.log(playerData[0].name);
-    console.log(playerData[0].level);
+    if (numberOfPlayers === 1) {
+        numElement.textContent = "Let's Play!";
+    } else {
+        numElement.textContent = "Confirm Player";
+    }
     displayPlayerSetup(0);
 }
 
@@ -169,7 +170,7 @@ function confirmPlayer() {
     for (let i = 0; i < playerData.length; i++) {
         if ((enteredName === playerData[i].name) && (thisPlayer !== i)) {
             alert("Player name is already taken");
-            return
+            return;
         }
     }
 
@@ -262,7 +263,11 @@ function setupRace(raceNum) {
     children[2].textContent = "Starting Line Up";
     document.getElementById('next-action-text').textContent = "Drivers are ready...";
     let button = document.getElementById('next-button');
-    (raceNum === 1) ? button.disabled = false : button.textContent = "Start Race!"; // enable gameplay button
+    if (raceNum === 1) {
+        button.disabled = false;     // enable gameplay button
+    } else {
+        button.textContent = "Start Race!"; 
+    } 
 }
 
 /**
