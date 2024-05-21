@@ -11,6 +11,12 @@ body {
     color: whitesmoke;
 }
 
+h2, h3 {
+    margin-top: 5px;
+    padding: 13px;
+    color: yellow
+}
+
 label {
     line-height: 2rem;
 }
@@ -43,6 +49,20 @@ a {
     font-size: 80%;
 }
 
+ul {
+    list-style-type: square;
+}
+
+button {
+    width: 140px;
+    height: 2rem;
+    background-color: yellow;
+    font-size: 110%;
+    font-weight: 600;
+    color: black;
+    border: 1px solid grey;
+}
+
 /* Classes */
 
 /* For input elements */
@@ -61,22 +81,12 @@ a {
     margin-top: 15px;
 }
 
-button {
-    width: 140px;
-    height: 2rem;
-    background-color: yellow;
-    font-size: 110%;
-    font-weight: 600;
-    color: black;
-    border: 1px solid grey;
-}
-
 .align-right {
     text-align: right;
  }
 
-
 /* ID styling */
+
 #title {
     margin-bottom: 20px;
 }
@@ -96,6 +106,10 @@ button {
     margin-bottom: 20px;
     padding-bottom: 20px;
     align-items: flex-end;
+}
+
+#instructions {
+    margin: 15px 10px;
 }
 
 #align-center {

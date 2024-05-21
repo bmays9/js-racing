@@ -29,10 +29,8 @@ function runGame() {
     if (firstSeason === true) {      // check if first season to setup Event Listeners.
         setupEventListeners();
         firstSeason = false;
-    } else {
-        console.log("Event Listeners already set up");
     }
-    }
+}
 
 /**
  * Populating initial array of playerData objects. 
@@ -93,7 +91,7 @@ function buildGameTable(stage) {
                 <td>${playerData[i].car}</td>
                 <td>${playerData[i].boost}</td>
                 <td>${playerData[i].seasonPoints}</td>
-        </tr>`;
+          </tr>`;
         }
     } else {
         console.log("error");
@@ -107,16 +105,22 @@ function buildGameTable(stage) {
  */
 function setupEventListeners() {
     let numPlayers = document.getElementById('number-of-players');
+
+    /**
+     * Handles the user changing the number of players in the game via the dropdown menu.
+     * Updates the number of players and calls the playerNumberChange function.
+     */
     numPlayers.addEventListener("change", function () {
-        console.log("num of players changed");
         numberOfPlayers = parseInt(numPlayers.value);
-        console.log(numberOfPlayers);
         playerNumberChange();
     });
-    console.log("Number of Players:" + numberOfPlayers);
 
+    // Event Listener for submit-button
     document.getElementById('submit-button').addEventListener("click", confirmPlayer);
 
+    /**
+     * Checks the text content of the button when clicked and proceeds accordingly. 
+     */
     document.getElementById('next-button').addEventListener("click", function () {
 
         switch (this.textContent) {
@@ -141,6 +145,7 @@ function setupEventListeners() {
         }
     });
 }
+
 /**
  * Changing the number of user players in the game resets the form back to player 1 details
  * and asks for confirmation. Stored data is displayed for each player but confirmation required again. 
@@ -161,11 +166,10 @@ function playerNumberChange() {
  * If last player to confirm, the number of races is stored and game moves on.
  */
 function confirmPlayer() {
-    console.log("func: confirmPlayer");
-    let thisPlayer = parseInt(document.getElementById("player-number-details").textContent - 1); // minus 1 for array value
+    //get player number from span in html, minus 1 for the array value
+    let thisPlayer = parseInt(document.getElementById("player-number-details").textContent - 1); 
     let enteredName = document.getElementById("player-name").value; 
-    console.log("this player" + thisPlayer);
-
+    
     // check if entered name is a duplicate
     for (let i = 0; i < playerData.length; i++) {
         if ((enteredName === playerData[i].name) && (thisPlayer !== i)) {
@@ -184,16 +188,11 @@ function confirmPlayer() {
     if (thisPlayer + 1 === numberOfPlayers) {
         numberOfRaces = parseInt(document.getElementById('number-of-races').value);
         document.getElementById("setup-area").style.display = "none"; // hide setup area
-        assignRatings();
-
-    } else if (thisPlayer + 1 < numberOfPlayers) {
+        assignRatings(); // all players are confirmed - start playing
+    } else {
         // display next player details for editing & confirming.
         displayPlayerSetup(thisPlayer +1); // + 1 
-        
-    } else {
-        console.log("Error in confirmPlayer function");
     }
-
     document.getElementById("player-name").focus();
 }
 
@@ -243,14 +242,17 @@ function assignRatings() {
                 break;
         }
         playerData[i].rating = Math.floor(Math.random() * range) + add;
+        // assign humanPlayers
+        if (i + 1 < numberOfPlayers) {
+            playerData[i].human = true;
+        }
+        // 
     }
-    console.log(playerData);
-
     setupRace(1);
 }
 
 /**
- * Display race details and starting positions of players.
+ * Display race details and starting positions of players. 
  * raceNum starts at 1
  */
 function setupRace(raceNum) {
@@ -262,6 +264,7 @@ function setupRace(raceNum) {
     children[1].textContent = `Race ${raceNum} of ${numberOfRaces}`;
     children[2].textContent = "Starting Line Up";
     document.getElementById('next-action-text').textContent = "Drivers are ready...";
+        
     let button = document.getElementById('next-button');
     if (raceNum === 1) {
         button.disabled = false;     // enable gameplay button
