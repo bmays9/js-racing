@@ -11,7 +11,8 @@ body {
     color: whitesmoke;
 }
 
-h2, h3 {
+h2,
+h3 {
     margin-top: 5px;
     padding: 13px;
     color: yellow
@@ -83,7 +84,7 @@ button {
 
 .align-right {
     text-align: right;
- }
+}
 
 /* ID styling */
 
@@ -91,11 +92,11 @@ button {
     margin-bottom: 20px;
 }
 
-#title a {
-    color: lawngreen;
-    font-style: italic;
-    text-decoration: none;
-}
+    #title a {
+        color: lawngreen;
+        font-style: italic;
+        text-decoration: none;
+    }
 
 #setup-area {
     display: flex;
@@ -119,7 +120,8 @@ button {
 /* Media Query: mobile phones and larger - 476px and upwards*/
 @media screen and (min-width: 476px) {
 
-    td, th {
+    td,
+    th {
         padding-left: 20px;
     }
 }
