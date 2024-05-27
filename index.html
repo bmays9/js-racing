@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@
     <!-- Favicon downloaded from -->
     <!-- https://www.freefavicon.com/freefavicons/objects/iconinfo/racing-flag-152-172009.html -->
 </head>
-
 <body>
     <!-- Header-->
     <div id="title">
@@ -27,7 +25,6 @@
     <div>
         <a href="#instructions">How To Play</a>
     </div>
-
     <!-- Number of Players and Number of Races options-->
     <div id="setup-area">
         <div class="align-right">
@@ -43,7 +40,8 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
-            </select><br>
+            </select>
+            <br>
             <label for="number-of-races">Races:</label>
             <select id="number-of-races" name="number-of-races" class="dropdown">
                 <option value="1">1</option>
@@ -58,7 +56,6 @@
                 <option value="10" selected>10</option>
             </select>
         </div>
-
         <!-- Central area to enter player name and select difficulty level -->
         <div class="align-right">
             <p id="align-center">Enter Player <span id="player-number-details">1</span>:</p>
@@ -117,22 +114,23 @@
             <li>Easy - Car is assigned a very high abilty</li>
             <li>Normal - Car is assigned a medium abilty</li>
             <li>Hard - Car is assigned a very low abilty</li>
-        </ul><br>
+        </ul>
+        <br>
         <p>By default each car is set to random difficulty level</p>
         <h3>Number Of Races</h3>
         <p>Choose the number of races in the game - maximum 10.</p>
         <h3>Game Speed</h3>
-        <p>After each race is run, the finishing positions are revealed one by one starting with 10th place. The speed of this reveal
-           is controlled by the Game Speed dropdown menu. The speed setting can be changed at any time during the game and the 
-           next race will be run at the new speed.
+        <p>
+            After each race is run, the finishing positions are revealed one by one starting with 10th place.The speed of this reveal
+            is controlled by the Game Speed dropdown menu.<br>The speed setting can be changed at any time during the game and the
+            next race will be run at the new speed.
         </p>
         <h3>Boost Points</h3>
         <p>Boost points are awarded at the end of each race to improve the ability rating of your car. </p>
-            <ul>
-                <li>1st - 3rd = 2 points</li>
-                <li>4th - 7th = 1 point</li>
-            </ul>
-        
+        <ul>
+            <li>1st - 3rd = 2 points</li>
+            <li>4th - 7th = 1 point</li>
+        </ul>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
