@@ -1,11 +1,13 @@
 // Setup initial game data and configuration -> 1 player, 10 races.
 let numberOfPlayers = 1;
 let numberOfRaces = 10;
-const playersInTotal = 10;  // Number of game players, including computer controlled.
+const playersInTotal = 10; // Number of game players, including computer controlled.
 let playerNames = ["Player1", "Basa", "Carol",
-    "Dwight", "Ernest", "Fatima", "Glenn", "Hideki", "India", "Jerry"];
+    "Dwight", "Ernest", "Fatima", "Glenn", "Hideki", "India", "Jerry"
+];
 let cars = ["Audi", "Mercedes", "Ferrari", "BMW", "Tesla",
-    "Jaguar", "Ford", "Toyota", "Honda", "Porsche"];
+    "Jaguar", "Ford", "Toyota", "Honda", "Porsche"
+];
 let countries = ["Australia", "Japan", "Germany", "Malaysia", "Hungary", "U.S.A.", "Monaco", "Brazil", "Italy", "South Africa"];
 let pointsAwarded = [15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
 let boostAwarded = [2, 2, 2, 1, 1, 1, 1, 0, 0, 0];
@@ -17,8 +19,6 @@ let firstSeason = true;
  * Initialises the game data and waits for user action.
  */
 function runGame() {
-    console.log("func:runGame");
-
     // Setup initial game data and configuration - Player 1 name:
     document.getElementById('player-name').value = playerNames[numberOfPlayers-1];
 
@@ -36,7 +36,6 @@ function runGame() {
  * Populating initial array of playerData objects. 
  */
 function buildPlayerData() {
-    console.log("func: buildPlayerData");
     playerData = [];
     for (let i = 0; i < playersInTotal; i++) {
         playerData.push({
@@ -49,7 +48,6 @@ function buildPlayerData() {
             "level": "Random",      // By default every player starts at random difficulty level
         });
     }
-    console.log(playerData);
 }
 
 /**
@@ -57,7 +55,6 @@ function buildPlayerData() {
  * start, standings
  */
 function buildGameTable(stage) {
-    console.log("func: buildGameTable");
     let tableHtml = "";
     if (stage === "start") {
         tableHtml = `<tr>
@@ -93,8 +90,6 @@ function buildGameTable(stage) {
                 <td>${playerData[i].seasonPoints}</td>
           </tr>`;
         }
-    } else {
-        console.log("error");
     }
     document.getElementById('game-table').innerHTML = tableHtml;
 }
@@ -201,8 +196,6 @@ function confirmPlayer() {
  * @param {any} num
  */
 function displayPlayerSetup(num) {              // num = playerData array number 
-    console.log("func: displayPlayerSetup");
-    console.log("num=" + num);
     document.getElementById("player-number-details").textContent = num + 1;  // sets the text to Player number
     document.getElementById("player-name").value = playerData[num].name;  // sets the Name input to stored Player name
     document.getElementById("difficulty").value = playerData[num].level;  // sets the difficulty level to stored Player difficulty
@@ -218,7 +211,6 @@ function displayPlayerSetup(num) {              // num = playerData array number
  * random 1-10; hard: 1/2/3; normal: 5/6; easy: 8/9/10
  */
 function assignRatings() {
-    console.log("func: assignRatings");
     let range = 0;      //number of values
     let add = 0;       //number to add from 0 to get rating range
 
@@ -256,7 +248,6 @@ function assignRatings() {
  * raceNum starts at 1
  */
 function setupRace(raceNum) {
-    console.log("func: setupRace");
     //Update info-space div
     let detailsDiv = document.getElementById('info-space');
     let children = detailsDiv.children;
@@ -277,7 +268,6 @@ function setupRace(raceNum) {
  * Generates the race result
  */
 function startRace() {
-    console.log("func: startRace");
     let race = createRaceArray(); 
     let result = createFinishArray(race);
     document.getElementById('next-button').disabled = true; //disable button while race is happening.
@@ -292,14 +282,12 @@ function startRace() {
  * another for each boost point. Array is populated with the player name.
  */
 function createRaceArray() {
-    console.log("Setting up the race array");
     let raceArray = [];
     for (let i = 0; i < 10; i++) {      // loop players
         for (let x = 0; x < (playerData[i].rating + playerData[i].boost); x++) {    //loop rating + boost
             raceArray.push(playerData[i].name);
         }
     }
-    console.log(raceArray);
     return raceArray;
 }
 
@@ -310,7 +298,6 @@ function createRaceArray() {
  * @param {any} raceRunning
  */
 function createFinishArray(raceRunning) {
-    console.log("func: createFinishArray");
     let finishArray = [];
     let finisher = "";
     for (let i = 0; i < 10; i++) {
@@ -322,10 +309,7 @@ function createFinishArray(raceRunning) {
         });
         //update raceRunning array with new filtered array
         raceRunning = tempArray;
-        console.log(finishArray);
-        console.log(raceRunning);
     }
-    
     return finishArray;
 }
 
@@ -336,14 +320,11 @@ function createFinishArray(raceRunning) {
  * @param {any} resultArray
  */
 function assignRacePoints(resultArray) {
-    console.log("func: assignRacePoints");
     for (let i = 0; i < 10; i++) {
         let points = pointsAwarded[i];
         let thisPlayer = playerData.find(thisPlayer => thisPlayer.name === resultArray[i]);
-        console.log(thisPlayer);
         thisPlayer.racePoints = points;
         thisPlayer.seasonPoints += points;
-        console.log(thisPlayer);
     }
 }
 
@@ -354,16 +335,12 @@ function assignRacePoints(resultArray) {
  * @param {any} reason
  */
 function sortPlayerArray(reason) {
-    console.log("func: sortPlayerArray");
     if (reason === "race-result") {
         let sortedPlayers = playerData.sort((p1, p2) => (p1.racePoints < p2.racePoints) ? 1 : (p1.racePoints > p2.racePoints) ? -1 : 0);
-        console.log(sortedPlayers);
         playerData = sortedPlayers;
         
     } else if (reason === "view-standings") {
-        console.log("view-standings");
         let sortedPlayers = playerData.sort((p1, p2) => (p1.seasonPoints < p2.seasonPoints) ? 1 : (p1.seasonPoints > p2.seasonPoints) ? -1 : 0);
-        console.log(sortedPlayers);
         playerData = sortedPlayers;
     }
 }
@@ -371,7 +348,6 @@ function sortPlayerArray(reason) {
  * build HTML table for result, table will be hidden.
  */
 function buildResult() {
-    console.log("func: buildResult");
     let resultHtml = "";
     resultHtml = `<tr>
         <th>Pos.</th>
@@ -399,7 +375,6 @@ function buildResult() {
  * Also calls addBoostPoints function. Boost points added after the race and first displayed in season standings.
  */
 function displayResult() {
-    console.log("func: displayResult");
     document.getElementById("table-info").textContent = "Race Result";
     document.getElementById("next-action-text").textContent = "";
     raceDelay = document.getElementById("game-speed").value;
@@ -409,7 +384,6 @@ function displayResult() {
     // https://code-institute-room.slack.com/archives/C7EJUQT2N/p1592124446412900
     let row = 10;
     function displayRow() {
-        console.log(`Displaying row number ${row}`);
         racePositions[row].style.visibility = "visible";
         row--;
         if (row < 1) { // Full result is now displayed, 
@@ -428,7 +402,6 @@ function displayResult() {
 function displayStandings() {
     // first sort the playerData array by season Points.
     sortPlayerArray("view-standings");
-    console.log(playerData);
     //update info text
     document.getElementById("table-info").textContent = "Overall Standings";
     document.getElementById("next-action-text").textContent = "The season so far..";
@@ -448,12 +421,9 @@ function addBoostPoints() {
 }
 
 function endOfGame() {
-    console.log("func: endOfGame");
     document.getElementById("table-info").textContent = "Final Standings";
     document.getElementById("next-action-text").textContent = `${playerData[0].name} is the winner with ${playerData[0].seasonPoints} points!`;
     document.getElementById('next-button').textContent = "Play Again";
 }
 
 runGame();
-
-
