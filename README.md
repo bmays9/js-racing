@@ -19,7 +19,7 @@ This site is targeted for people with an interest in racing games and fast multi
 
 ## Colours
 
-The colour scheme for the website was chosen to be simple, with bright and bold text against a black background for good accessibility. 
+The colour scheme for the website was chosen to be simple, with bright and bold text against a black background for accessibility reasons. 
 
 ![colour scheme image](assets/readme-images/colorcodes.png)
 
@@ -67,7 +67,7 @@ W3C CSS Validation Service - used to validate CSS code.\
 Chrome Lighthouse - used to generate Lighthouse reports.\
 WAVE Accessibility tool - used to assess accessibility.\
 Amiresponsive.co.uk - used for responsive design example screenshots for this readme file.\
-freeformatter.com - used for formatting html and CSS code.\
+freeformatter.com - used for formatting HTML, CSS and JavaScript code.\
 webaim.org - used to check colour contrasts for accessibility.\
 htmlcolorcodes.com - used for colour code screenshots for readme.\
 
@@ -76,7 +76,7 @@ htmlcolorcodes.com - used for colour code screenshots for readme.\
 ### Validator Testing
 
 1. WC3 HTML Validator used to validate the HTML 5 code written on all pages of my website - no errors but two warnings found. I accept these warnings without need for changes as it references empty h3 and h4 headers. These are deliberately empty at the page load as they are populated by the JavaScript once the game is running.\
-- ![HTML Validation results image](assets/readme-images/html-validator.png
+- ![HTML Validation results image](assets/readme-images/html-validator.png)
 
 2. Jigsaw CSS Validator used to validate the CSS code written for my website - no errors or warnings found.\
 - ![CSS Validation results image](assets/readme-images/cssvalidator.png)
@@ -84,6 +84,9 @@ htmlcolorcodes.com - used for colour code screenshots for readme.\
 3.  Google Chrome's Lighthouse Developer Tool used to analyse the performance and accessibility measures of my website.\
 - ![Lighthouse Validation results for index page image](assets/readme-images/lighthouse.png)
 
+4. JShint was used to validate the JavaScript code for errors. There was one warning displayed applicable to two lines of code - "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics."
+   I acknowledged this warning but decided against making any changes as a result. The code is working as designed and the functions declared within these loops have no issues. 
+- ![JavaScript Validation results image](assets/readme-images/jshint.png)
 
 ### Device Testing
 
@@ -134,14 +137,18 @@ The website was tested by users on the following devices:
  - Players are awarded correct number of points for their finshing position.
    1,2,3,4,5,6,8,10,12,15
    - Pass
- - Players are awarded correct number of points for their finishing position.
+ - Players are awarded correct number of boost for their finishing position.
    - Pass
+ - Players are ordered correctly on all game screens.
+  
 
 ## Bugs and Fixes
 
-When starting a new season, the game would abort during the first race. Duplicate Names
+- When starting a new season, the game would abort during the first race and clicking buttons did not have any effect.
+  - I found that when starting the second season without altering any configuration details, the "Let's play" button was confirming the displayed player as the last edited player. Player one was always the displayed player which meant if there was 2 players, Player1 was being confirmed as the player name for player number 2. This meant that the loops for determining the finishing positions were not working as two players had the same name. TO fix it, I added a duplicate name check in the setup phase, and also now display the correct name associated with the number of players at the start of the new season. 
 
-Duplicate event handlers. When starting a second season after completing the game there was a bug with the game running the races twice before displaying the result. The cause was found to be due to calling the setupEventListeners function when initiating the second season, duplicating the action whenever a button was clicked. The fix was to implement a season number check in the code before to  Fixed in Commit ID 34acdd32
+ - Duplicate event handlers. When starting a second season after completing the game there was a bug with the game running the races twice before displaying the result.
+  - The cause was found to be due to calling the setupEventListeners function when initiating the second season, duplicating the action whenever a button was clicked. The fix was to implement a season number check in the code before to  Fixed in Commit ID 34acdd32
 
 ## Deployment
 
