@@ -46,10 +46,12 @@ Courier New is used for the game table to give a distinctive but readable feel t
 - __Game Area__
   - This is where the game takes place and the game table html is populated by the JavaScript code. All of the information about the race results and overall standings are presented to the player(s). The race results are presented on a time delay and revealed in order from 10th position to 1st. The delay allows for the excitement to build as the winner is the last to be displayed.
 
-![Setup area image](assets/readme-images/gamearea.png)
+![Gameplay area image](assets/readme-images/gamearea.png)
 
 - __Instructions__
   - This section explains to the user how to play the game and the information is split into sections for a better user experience.
+
+![Instructions section image](assets/readme-images/instructions.png)
 
 ## Technologies Used
 
