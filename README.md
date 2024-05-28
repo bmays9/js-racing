@@ -10,7 +10,7 @@ This site is targeted for people with an interest in racing games and fast multi
 
 ## User Expectations
 
-- The website should be easy to read and game information is structured intelligently.
+- The website should be easy to read and game information structured intelligently.
 - The website shall be compatible to devices of all screen sizes with a responsive design.
 - The website shall use a consistent style of colourings and fonts.
 - The game shall be intuitive and easy to follow.
@@ -140,6 +140,7 @@ The website was tested by users on the following devices:
  - Players are awarded correct number of boost for their finishing position.
    - Pass
  - Players are ordered correctly on all game screens.
+   - Pass
   
 
 ## Bugs and Fixes
@@ -147,7 +148,7 @@ The website was tested by users on the following devices:
 - When starting a new season, the game would abort during the first race and clicking buttons did not have any effect.
   - I found that when starting the second season without altering any configuration details, the "Let's play" button was confirming the displayed player as the last edited player. Player one was always the displayed player which meant if there was 2 players, Player1 was being confirmed as the player name for player number 2. This meant that the loops for determining the finishing positions were not working as two players had the same name. TO fix it, I added a duplicate name check in the setup phase, and also now display the correct name associated with the number of players at the start of the new season. 
 
- - Duplicate event handlers. When starting a second season after completing the game there was a bug with the game running the races twice before displaying the result.
+- Duplicate event handlers. When starting a second season after completing the game there was a bug with the game running the races twice before displaying the result.
   - The cause was found to be due to calling the setupEventListeners function when initiating the second season, duplicating the action whenever a button was clicked. The fix was to implement a season number check in the code before to  Fixed in Commit ID 34acdd32
 
 ## Deployment
@@ -174,13 +175,13 @@ I deployed my website early on Github pages.
 
 ## How to fork the repository
 
-1. Login to Github
+1. Login to Github.
 2. Go to the project repository at (https://github.com/bmays9/js-racing)
 3. Click the 'Fork' button.
 
 ## Credits and References
 
-I used the following webpages to assist with building the code for this website.
+I used the following webpages to assist with building the JavaScript code for this website.
 
 - To find an object in an array by element
   - https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
@@ -200,9 +201,7 @@ I used the following webpages to assist with building the code for this website.
 - How to delay calling a function.
   - based on the following code from Robinz_alumni on Code Institute Slack channel
   - From <https://app.slack.com/client/T0L30B202/search> 
-
 `let counter = 1;`
-
 `function printAndMaybeCancel() {`
 `console.log(`Printing, number ${counter}`) ;`
 `counter++;`
@@ -210,8 +209,7 @@ I used the following webpages to assist with building the code for this website.
 `clearInterval(counterInterval);`
 `} `
 `}`
-
 `const counterInterval = setInterval(printAndMaybeCancel, 2000);`
-`
+
 
 
